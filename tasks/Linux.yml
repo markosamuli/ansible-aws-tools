@@ -29,29 +29,5 @@
     - aws
     - aws-shell
 
-- name: Linux | Create directory for AWS Vault
-  file:
-    path: "{{ aws_tools_dir }}/aws-vault-{{ aws_vault_version }}"
-    state: directory
-
-- name: Linux | Download aws-vault binary from GitHub
-  get_url:
-    url: https://github.com/99designs/aws-vault/releases/download/v{{ aws_vault_version }}/{{ aws_vault_binary }}
-    dest: "{{ aws_tools_dir }}/aws-vault-{{ aws_vault_version }}/aws-vault"
-    checksum: "{{ aws_vault_checksum }}"
-    mode: 0755
-
-- name: Linux | Symlink aws-vault to /usr/local/bin
-  file:
-    src: "{{ aws_tools_dir }}/aws-vault-{{ aws_vault_version }}/aws-vault"
-    dest: "{{ aws_bin_dir }}/aws-vault"
-    state: link
-
-- name: Linux | Get aws-vault version
-  command: aws-vault --version
-  register: aws_vault_installed_version
-  changed_when: False
-
-- name: Linux | Check that aws-vault is not out of date
-  assert:
-    that: "'v{{ aws_vault_version }}' == '{{ aws_vault_installed_version.stdout }}'"
+- include: aws_vault.yml
+- include: cli53.yml

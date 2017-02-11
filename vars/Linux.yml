@@ -1,3 +1,11 @@
 ---
 
+# AWS Vault
+aws_vault_version: "3.7.0"
 aws_vault_binary: aws-vault-linux-amd64
+aws_vault_checksum: sha256:0ff59eb412eff4beebd71f3431bd325d1d07190fe0e22f9ca433502efb17f4c4
+
+# CLI 53
+cli53_version: "0.8.7"
+cli53_binary: cli53-linux-amd64
+cli53_checksum: sha256:336b459ea1b80d7b0907f27013c5ed6b062a01fd7849c84422b5b86f372b5d80

@@ -14,3 +14,8 @@
   homebrew_cask:
     name: aws-vault
     state: present
+
+- name: OS X | Install cli53 with Homebrew
+  homebrew:
+    name: cli53
+    state: latest
