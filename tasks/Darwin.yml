@@ -1,10 +1,16 @@
 ---
 
 - name: OS X | Install AWS CLI tools with Homebrew
-  homebrew: name=awscli
+  homebrew:
+    name: awscli
+    state: latest
 
 - name: OS X | Install AWS Shell with Homebrew
-  homebrew: name=aws-shell
+  homebrew:
+    name: aws-shell
+    state: latest
 
 - name: OS X | Install AWS Vault with Homebrew
-  homebrew: name=aws-vault
+  homebrew_cask:
+    name: aws-vault
+    state: present
