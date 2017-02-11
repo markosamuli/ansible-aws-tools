@@ -53,10 +53,6 @@ script:
   - >
     ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
-  # Debug idempotence test
-  - >
-    ansible-playbook tests/test.yml -i tests/inventory --connection=local
-
   # Test idempotence
   - >
     ansible-playbook tests/test.yml -i tests/inventory --connection=local

@@ -9,6 +9,9 @@ aws_tools_python: python2.7
 # Target for symlinked binaries
 aws_bin_dir: /usr/local/bin
 
+# Do not install aws-mfa gem by default
+aws_mfa: false
+
 # AWS Vault
 aws_vault_version: "3.7.0"
 aws_vault_checksum: sha256:0ff59eb412eff4beebd71f3431bd325d1d07190fe0e22f9ca433502efb17f4c4

@@ -16,4 +16,7 @@
   when: "{{ ansible_os_family == 'Darwin' }}"
 
 - name: Install AWS MFA client
-  gem: name=aws-mfa state=latest
+  gem:
+    name: aws-mfa
+    state: present
+  when: aws_mfa
