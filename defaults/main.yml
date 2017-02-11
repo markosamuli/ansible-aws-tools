@@ -3,6 +3,10 @@
 
 # Path to install tools into
 aws_tools_dir: /opt/aws-tools
+aws_tools_venv: "{{ aws_tools_dir }}/venv"
+aws_tools_python: python2.7
+
+# Target for symlinked binaries
 aws_bin_dir: /usr/local/bin
 
 # AWS Vault

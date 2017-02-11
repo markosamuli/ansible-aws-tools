@@ -1,16 +1,33 @@
 ---
 
+- name: Linux | Install virtualenv
+  pip:
+    name: virtualenv
+    state: present
 
-- name: Linux | Install AWS CLI tools with pip
-  pip: name=awscli state=latest
-
-- name: Linux | Install AWS Shell with pip
-  pip: name=aws-shell state=latest
-  
 - name: Linux | Create directory for AWS tools
   file:
     path: "{{ aws_tools_dir }}"
     state: directory
+
+- name: Linux | Install AWS tools in virtualenv
+  pip:
+    name: "{{ item }}"
+    state: latest
+    virtualenv: "{{ aws_tools_venv }}"
+    virtualenv_python: "{{ aws_tools_python }}"
+  with_items:
+    - awscli
+    - aws-shell
+
+- name: Linux | Symlink AWS binaries to /usr/local/bin
+  file:
+    src: "{{ aws_tools_venv }}/bin/{{ item }}"
+    dest: "{{ aws_bin_dir }}/{{ item }}"
+    state: link
+  with_items:
+    - aws
+    - aws-shell
 
 - name: Linux | Create directory for AWS Vault
   file:
@@ -36,5 +53,5 @@
   changed_when: False
 
 - name: Linux | Check that aws-vault is not out of date
-  assert: 
+  assert:
     that: "'v{{ aws_vault_version }}' == '{{ aws_vault_installed_version.stdout }}'"
