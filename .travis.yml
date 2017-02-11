@@ -64,6 +64,7 @@ script:
   - command -v aws
   - command -v aws-shell
   - command -v aws-shell
+  - command -v cli53
 
 notifications:
   email: false
