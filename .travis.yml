@@ -24,8 +24,6 @@ before_install:
   # Install Ansible with Homebrew on OS X
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update         ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ansible; fi
-  # Upgrade pip
-  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then sudo pip --upgrade pip; fi
 
 install:
   # Install Ansible with pip
