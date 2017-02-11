@@ -6,23 +6,26 @@ matrix:
       dist: trusty
       sudo: required
       language: generic
-      python: 
+      python:
        - "2.7"
     - os: osx
       language: generic
-      python: 
+      python:
        - "2.7"
 
-# Install Ansible
+# Install Ansible and Python development packages
 addons:
   apt:
     packages:
     - python-pip
+    - python-dev
 
 before_install:
   # Install Ansible with Homebrew on OS X
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update         ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ansible; fi
+  # Upgrade pip
+  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then sudo pip --upgrade pip; fi
 
 install:
   # Install Ansible with pip
@@ -36,8 +39,8 @@ install:
 
   # Configure ansible.cfg on Linux
   - >
-    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then 
-      printf '\n[privilege_escalation]\nbecome=True' >> ansible.cfg 
+    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then
+      printf '\n[privilege_escalation]\nbecome=True' >> ansible.cfg
     fi
 
 before_script:
@@ -45,8 +48,8 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm get head || true; fi
 
 script:
-  # Basic role syntax check 
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check 
+  # Basic role syntax check
+  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
   # Test role run
   - >
