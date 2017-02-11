@@ -53,12 +53,21 @@ script:
   - >
     ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
+  # Debug idempotence test
+  - >
+    ansible-playbook tests/test.yml -i tests/inventory --connection=local
+
   # Test idempotence
   - >
     ansible-playbook tests/test.yml -i tests/inventory --connection=local
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
+
+  # Test command line tools have been installed are are availble globally
+  - command -v aws
+  - command -v aws-shell
+  - command -v aws-shell
 
 notifications:
   email: false
