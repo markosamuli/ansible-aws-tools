@@ -1,9 +1,9 @@
 ---
 
 # AWS Vault
-aws_vault_version: "3.7.0"
+aws_vault_version: "4.0.0"
 aws_vault_binary: aws-vault-linux-amd64
-aws_vault_checksum: sha256:0ff59eb412eff4beebd71f3431bd325d1d07190fe0e22f9ca433502efb17f4c4
+aws_vault_checksum: sha256:5d0f2bcd28df5090e187c8cc3abe9bfb9c47785b1562b20f5ca9cf2c24ab438d
 
 # CLI 53
 cli53_version: "0.8.10"
