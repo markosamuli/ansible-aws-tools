@@ -3,20 +3,12 @@
 
 - include_vars: "{{ item }}"
   with_first_found:
-    - files:
-      - "{{ ansible_os_family }}.yml"
-      - "{{ ansible_system }}.yml"
-      - "default.yml"
-      paths: vars
+  - "{{ ansible_os_family }}.yml"
+  - "{{ ansible_system }}.yml"
+  - "default.yml"
 
 - include: Linux.yml
   when: "{{ ansible_system == 'Linux' }}"
 
 - include: Darwin.yml
   when: "{{ ansible_os_family == 'Darwin' }}"
-
-- name: Install AWS MFA client
-  gem:
-    name: aws-mfa
-    state: present
-  when: aws_mfa
