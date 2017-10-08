@@ -8,6 +8,7 @@ Install AWS tools on Ubuntu and OS X:
 - [aws-cli](https://github.com/aws/aws-cli)
 - [aws-shell](https://github.com/awslabs/aws-shell)
 - [aws-vault](https://github.com/99designs/aws-vault)
+- [cli53](https://github.com/barnybug/cli53)
 
 Linux packages are installed by default under /opt/aws-tools and binaries symlinked to /usr/local/bin.
 
