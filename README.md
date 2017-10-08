@@ -20,3 +20,8 @@ License
 -------
 
 MIT
+
+Author Information
+------------------
+
+- [@markosamuli](https://github.com/markosamuli)
