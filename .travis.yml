@@ -1,17 +1,23 @@
 ---
 
+language: generic
+python: "2.7"
+
 matrix:
   include:
     - os: linux
       dist: trusty
       sudo: required
-      language: generic
-      python:
-       - "2.7"
+      env: ANSIBLE_VERSION=2.2.3.0
+    - os: linux
+      dist: trusty
+      sudo: required
+      env: ANSIBLE_VERSION=2.3.2.0
+    - os: linux
+      dist: trusty
+      sudo: required
+      env: ANSIBLE_VERSION=2.4.0.0
     - os: osx
-      language: generic
-      python:
-       - "2.7"
 
 # Install Ansible and Python development packages
 addons:
@@ -27,7 +33,7 @@ before_install:
 
 install:
   # Install Ansible with pip
-  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then sudo pip install ansible; fi
+  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then sudo pip install ansible==${ANSIBLE_VERSION}; fi
 
   # Check Ansible version
   - ansible --version
