@@ -1,11 +1,16 @@
 ---
 # tasks file for markosamuli.aws-tools
 
+# Define paths to fix issues in Ansible v2.2
+# https://github.com/ansible/ansible/issues/23392
 - include_vars: "{{ item }}"
   with_first_found:
-  - "{{ ansible_os_family }}.yml"
-  - "{{ ansible_system }}.yml"
-  - "default.yml"
+    - files:
+      - "{{ ansible_os_family }}.yml"
+      - "{{ ansible_system }}.yml"
+      - "default.yml"
+      paths: vars
+
 
 - include: Linux.yml
   when: "{{ ansible_system == 'Linux' }}"
