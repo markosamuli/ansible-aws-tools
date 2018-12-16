@@ -12,7 +12,15 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
+      env: ANSIBLE_VERSION=2.3.2.0
+    - os: linux
+      dist: trusty
+      sudo: required
       env: ANSIBLE_VERSION=2.4.0.0
+    - os: linux
+      dist: xenial
+      sudo: required
+      env: ANSIBLE_VERSION=2.7.4.0
     - os: osx
 
 # Install Ansible and Python development packages
@@ -67,7 +75,3 @@ script:
   - command -v aws-shell
   - command -v aws-vault
   - command -v cli53
-
-notifications:
-  email: false
-#  webhooks: https://galaxy.ansible.com/api/v1/notifications/
