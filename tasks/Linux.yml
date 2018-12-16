@@ -3,7 +3,6 @@
 - name: Linux | Install virtualenv
   pip:
     name: virtualenv
-    state: present
 
 - name: Linux | Create directory for AWS tools
   file:
