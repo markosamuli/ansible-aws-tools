@@ -7,7 +7,7 @@
   with_first_found:
     - files:
       - "{{ ansible_os_family }}.yml"
-      - "{{ ansible_system }}.yml"
+      - "{{ ansible_system }}_{{ ansible_architecture }}.yml"
       - "default.yml"
       paths: vars
 
