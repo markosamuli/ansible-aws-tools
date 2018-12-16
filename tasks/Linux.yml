@@ -11,13 +11,11 @@
 
 - name: Linux | Install AWS tools in virtualenv
   pip:
-    name: "{{ item }}"
-    state: latest
-    virtualenv: "{{ aws_tools_venv }}"
-    virtualenv_python: "{{ aws_tools_python }}"
-  with_items:
+    name:
     - awscli
     - aws-shell
+    virtualenv: "{{ aws_tools_venv }}"
+    virtualenv_python: "{{ aws_tools_python }}"
 
 - name: Linux | Symlink AWS binaries to /usr/local/bin
   file:
