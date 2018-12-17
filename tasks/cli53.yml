@@ -22,7 +22,9 @@
   command: cli53 --version
   register: cli53_installed_version
   changed_when: False
+  when: cli53_check_version
 
 - name: Linux | Check that cli53 is not out of date
   assert:
     that: "'cli53 version {{ cli53_version }}' == '{{ cli53_installed_version.stdout }}'"
+  when: cli53_check_version

@@ -9,5 +9,6 @@ aws_tools_python: python2.7
 # Target for symlinked binaries
 aws_bin_dir: /usr/local/bin
 
-# Do not install aws-mfa gem by default
-aws_mfa: false
+# Do not check version by default
+cli53_check_version: false
+aws_vault_check_version: false
