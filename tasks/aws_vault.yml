@@ -22,7 +22,9 @@
   command: aws-vault --version
   register: aws_vault_installed_version
   changed_when: False
+  when: aws_vault_check_version
 
 - name: Linux | Check that aws-vault is not out of date
   assert:
     that: "'v{{ aws_vault_version }}' == '{{ aws_vault_installed_version.stdout }}'"
+  when: aws_vault_check_version
