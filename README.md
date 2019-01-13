@@ -2,6 +2,8 @@ aws-tools
 =========
 
 [![Build Status](https://travis-ci.org/markosamuli/ansible-aws-tools.svg?branch=master)](https://travis-ci.org/markosamuli/ansible-aws-tools)
+[![GitHub release](https://img.shields.io/github/release/markosamuli/ansible-aws-tools.svg)](https://github.com/markosamuli/ansible-aws-tools/releases)
+[![License](https://img.shields.io/github/license/markosamuli/ansible-aws-tools.svg)](https://github.com/markosamuli/ansible-aws-tools/blob/master/LICENSE)
 
 Install AWS tools on Ubuntu and OS X:
 
@@ -19,7 +21,7 @@ Used in [markosamuli/machine](https://github.com/markosamuli/machine) playbook f
 License
 -------
 
-MIT
+[MIT](LICENSE)
 
 Author Information
 ------------------
