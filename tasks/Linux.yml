@@ -29,4 +29,4 @@
 
 - name: Remove old installation
   include_tasks: remove_old_install.yml
-  when: aws_tools_remove_old_install
+  when: aws_tools_remove_old_install | bool

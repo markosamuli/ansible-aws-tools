@@ -9,7 +9,7 @@
 
 - name: Check existing asdf installs
   include_tasks: check_asdf_installs.yml
-  when: aws_tools_check_asdf_installs
+  when: aws_tools_check_asdf_installs | bool
 
 - name: Install on Linux
   include_tasks: Linux.yml
