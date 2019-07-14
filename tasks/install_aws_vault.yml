@@ -1,0 +1,26 @@
+---
+
+- name: Check if aws-vault version exists
+  stat:
+    path: "{{ aws_tools_dir }}/aws-vault/{{ aws_vault_version }}"
+  register: aws_vault_st
+
+- name: Create directory for aws-vault
+  file:
+    path: "{{ aws_tools_dir }}/aws-vault/{{ aws_vault_version }}"
+    state: directory
+  when: not aws_vault_st.stat.exists
+
+- name: Download aws-vault binary from GitHub
+  get_url:
+    url: https://github.com/99designs/aws-vault/releases/download/v{{ aws_vault_version }}/{{ aws_vault_binary }}
+    dest: "{{ aws_tools_dir }}/aws-vault/{{ aws_vault_version }}/aws-vault"
+    checksum: "{{ aws_vault_checksum }}"
+    mode: 0755
+  when: not aws_vault_st.stat.exists
+
+- name: Symlink aws-vault to {{ aws_tools_bin_dir }}
+  file:
+    src: "{{ aws_tools_dir }}/aws-vault/{{ aws_vault_version }}/aws-vault"
+    dest: "{{ aws_tools_bin_dir }}/aws-vault"
+    state: link

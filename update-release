@@ -69,7 +69,8 @@ update_aws_vault_version() {
 get_aws_vault_checksum() {
     local release=$1
     local binary=$2
-    local url="https://github.com/99designs/aws-vault/releases/download/${release}"
+    local url="https://github.com/99designs/aws-vault"
+    url="${url}/releases/download/${release}"
     url="${url}/${binary}"
     curl -L --silent "${url}" | sha256sum | awk '{ print $1 }'
 }

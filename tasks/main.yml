@@ -1,19 +1,20 @@
 ---
 # tasks file for markosamuli.aws-tools
 
-# Define paths to fix issues in Ansible v2.2
-# https://github.com/ansible/ansible/issues/23392
-- include_vars: "{{ item }}"
+- name: Load target system variables
+  include_vars: "{{ item }}"
   with_first_found:
-    - files:
-      - "{{ ansible_os_family }}.yml"
-      - "{{ ansible_system }}_{{ ansible_architecture }}.yml"
-      - "default.yml"
-      paths: vars
+    - "os/{{ ansible_os_family }}.yml"
+    - "os/{{ ansible_system }}_{{ ansible_architecture }}.yml"
 
+- name: Check existing asdf installs
+  include_tasks: check_asdf_installs.yml
+  when: aws_tools_check_asdf_installs
 
-- include: Linux.yml
+- name: Install on Linux
+  include_tasks: Linux.yml
   when: "ansible_system == 'Linux'"
 
-- include: Darwin.yml
+- name: Install on macOS
+  include_tasks: Darwin.yml
   when: "ansible_os_family == 'Darwin'"

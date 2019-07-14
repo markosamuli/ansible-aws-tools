@@ -1,0 +1,15 @@
+---
+
+- name: Set asdf installs directory
+  set_fact:
+    asdf_installs_dir: "{{ aws_tools_home }}/.asdf/installs"
+
+- name: Check if aws-vault is installed with asdf
+  stat:
+    path: "{{ asdf_installs_dir }}/aws-vault"
+  register: asdf_aws_vault_install
+
+- name: Disable aws-vault install
+  set_fact:
+    aws_tools_install_aws_vault: false
+  when: asdf_aws_vault_install.stat.exists

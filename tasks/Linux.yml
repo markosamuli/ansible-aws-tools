@@ -1,30 +1,32 @@
 ---
 
-- name: Linux | Install virtualenv
-  pip:
-    name: virtualenv
-
-- name: Linux | Create directory for AWS tools
+- name: Create directories
   file:
-    path: "{{ aws_tools_dir }}"
+    path: "{{ item }}"
     state: directory
-
-- name: Linux | Install AWS tools in virtualenv
-  pip:
-    name:
-    - awscli
-    - aws-shell
-    virtualenv: "{{ aws_tools_venv }}"
-    virtualenv_python: "{{ aws_tools_python }}"
-
-- name: Linux | Symlink AWS binaries to /usr/local/bin
-  file:
-    src: "{{ aws_tools_venv }}/bin/{{ item }}"
-    dest: "{{ aws_bin_dir }}/{{ item }}"
-    state: link
   with_items:
-    - aws
-    - aws-shell
+    - "{{ aws_tools_dir }}"
+    - "{{ aws_tools_bin_dir }}"
 
-- include: aws_vault.yml
-- include: cli53.yml
+- name: Install awscli
+  include_tasks: install_awscli.yml
+
+- name: Install aws-shell
+  include_tasks: install_aws_shell.yml
+
+- name: Install aws-vault
+  include_tasks: install_aws_vault.yml
+  when: aws_tools_install_aws_vault | default(true)
+
+- name: Install cli53
+  include_tasks: install_cli53.yml
+
+- name: Configure bash
+  include_tasks: shell_bash.yml
+
+- name: Configure zsh
+  include_tasks: shell_zsh.yml
+
+- name: Remove old installation
+  include_tasks: remove_old_install.yml
+  when: aws_tools_remove_old_install

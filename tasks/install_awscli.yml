@@ -1,0 +1,13 @@
+---
+
+- name: Check if awscli is installed
+  stat:
+    path: "{{ aws_tools_bin_dir }}/aws"
+  register: awscli_st
+
+- name: Install awscli
+  pip:
+    name:
+      - awscli
+    extra_args: --user
+  when: not awscli_st.stat.exists
