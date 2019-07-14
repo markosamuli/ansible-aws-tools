@@ -59,6 +59,14 @@ aws_tools_check_asdf_installs: false
 
 [asdf-vm]: https://asdf-vm.com
 
+## Install Git hooks
+
+Install `pre-commit`, `pre-push` and `commit-msg` Git hooks:
+
+```bash
+make install-git-hooks
+```
+
 ## Update release
 
 Update `aws-vault` and `cli53` release versions:
