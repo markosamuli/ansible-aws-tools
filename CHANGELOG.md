@@ -4,6 +4,8 @@
 
 ### Changed
 
+* Update cli53 to v0.8.15.
+* Update aws-vault to v4.6.2.
 * Install packages under `~/.local` on Linux.
 * The previous Linux role installed packages under `/opt/aws-tools` and created
 symbolic links to `/usr/local/bin`. These will be removed automatically.
