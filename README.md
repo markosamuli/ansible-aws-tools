@@ -1,8 +1,12 @@
 # Common tools for AWS
 
-[![Build Status](https://travis-ci.org/markosamuli/ansible-aws-tools.svg?branch=master)](https://travis-ci.org/markosamuli/ansible-aws-tools)
 [![GitHub release](https://img.shields.io/github/release/markosamuli/ansible-aws-tools.svg)](https://github.com/markosamuli/ansible-aws-tools/releases)
 [![License](https://img.shields.io/github/license/markosamuli/ansible-aws-tools.svg)](https://github.com/markosamuli/ansible-aws-tools/blob/master/LICENSE)
+
+| Branch  | Status |
+|---------|--------|
+| master  | [![Build Status](https://travis-ci.org/markosamuli/ansible-aws-tools.svg?branch=master)](https://travis-ci.org/markosamuli/ansible-aws-tools)
+| develop | [![Build Status](https://travis-ci.org/markosamuli/ansible-aws-tools.svg?branch=develop)](https://travis-ci.org/markosamuli/ansible-aws-tools)
 
 This Ansible role installs the following tools on Ubuntu and macOS.
 
