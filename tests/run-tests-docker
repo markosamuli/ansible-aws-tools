@@ -53,18 +53,14 @@ else
     exit 1
 fi
 
-echo "aws:"
-command -v aws || \
+command -v aws > /dev/null || \
     { error "aws not found"; exit 1; }
 
-echo "aws-shell:"
-command -v aws-shell || \
+command -v aws-shell > /dev/null || \
     { error "aws-shell not found"; exit 1; }
 
-echo "aws-vault:"
-command -v aws-vault || \
+command -v aws-vault > /dev/null || \
     { error "aws-vault not found"; exit 1; }
 
-echo "cli53:"
-command -v cli53 || \
+command -v cli53 > /dev/null || \
     { error "cli53 not found"; exit 1; }
