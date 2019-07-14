@@ -55,12 +55,15 @@ fi
 
 command -v aws > /dev/null || \
     { error "aws not found"; exit 1; }
+aws --version
 
 command -v aws-shell > /dev/null || \
     { error "aws-shell not found"; exit 1; }
 
 command -v aws-vault > /dev/null || \
     { error "aws-vault not found"; exit 1; }
+aws-vault --version
 
 command -v cli53 > /dev/null || \
     { error "cli53 not found"; exit 1; }
+cli53 --version

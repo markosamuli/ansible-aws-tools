@@ -83,7 +83,6 @@ script:
   - >
     source ~/.bashrc
     && command -v aws-shell
-    && aws-shell --version
   - >
     source ~/.bashrc
     && command -v aws-vault
