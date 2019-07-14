@@ -1,0 +1,13 @@
+---
+
+- name: Check if aws-shell is installed
+  stat:
+    path: "{{ aws_tools_bin_dir }}/aws-shell"
+  register: aws_shell_st
+
+- name: Install aws-shell
+  pip:
+    name:
+      - aws-shell
+    extra_args: --user
+  when: not aws_shell_st.stat.exists

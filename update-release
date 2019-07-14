@@ -25,7 +25,7 @@ get_latest_release() {
 update_cli53_version() {
     local version=$1
     local binary="cli53-linux-amd64"
-    local vars_file="vars/Linux_x86_64.yml"
+    local vars_file="vars/os/Linux_x86_64.yml"
     local checksum=""
     checksum=$(get_cli53_checksum ${version} ${binary})
     [ -z "${checksum}" ] && exit 1
@@ -54,7 +54,7 @@ get_cli53_checksum() {
 update_aws_vault_version() {
     local version=$1
     local binary="aws-vault-linux-amd64"
-    local vars_file="vars/Linux_x86_64.yml"
+    local vars_file="vars/os/Linux_x86_64.yml"
     local checksum=""
     checksum=$(get_aws_vault_checksum v${version} ${binary})
     [ -z "${checksum}" ] && exit 1
@@ -69,7 +69,8 @@ update_aws_vault_version() {
 get_aws_vault_checksum() {
     local release=$1
     local binary=$2
-    local url="https://github.com/99designs/aws-vault/releases/download/${release}"
+    local url="https://github.com/99designs/aws-vault"
+    url="${url}/releases/download/${release}"
     url="${url}/${binary}"
     curl -L --silent "${url}" | sha256sum | awk '{ print $1 }'
 }

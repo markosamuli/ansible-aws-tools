@@ -1,0 +1,26 @@
+---
+
+- name: Check if cli53 version exists
+  stat:
+    path: "{{ aws_tools_dir }}/cli53/{{ cli53_version }}"
+  register: cli53_st
+
+- name: Create directory for cli53
+  file:
+    path: "{{ aws_tools_dir }}/cli53/{{ cli53_version }}"
+    state: directory
+  when: not cli53_st.stat.exists
+
+- name: Download cli53 binary from GitHub
+  get_url:
+    url: https://github.com/barnybug/cli53/releases/download/{{ cli53_version }}/{{ cli53_binary }}
+    dest: "{{ aws_tools_dir }}/cli53/{{ cli53_version }}/cli53"
+    checksum: "{{ cli53_checksum }}"
+    mode: 0755
+  when: not cli53_st.stat.exists
+
+- name: Symlink cli53 to {{ aws_tools_bin_dir }}
+  file:
+    src: "{{ aws_tools_dir }}/cli53/{{ cli53_version }}/cli53"
+    dest: "{{ aws_tools_bin_dir }}/cli53"
+    state: link

@@ -3,29 +3,67 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT=$(dirname $DIR)
 
+###
+# Print error into STDERR
+###
+error() {
+    echo "$@" 1>&2
+}
+
 set -e
+
+# Variables to pass to ansible-playbook
+ansible_vars=(
+)
+extra_vars=$(printf ",%s" "${ansible_vars[@]}")
+extra_vars="{${extra_vars:1}}"
+
+# Paths in which Ansible will search for Roles
+export ANSIBLE_ROLES_PATH=$(dirname $PROJECT_ROOT)
 
 cd $PROJECT_ROOT
 
+echo ""
 echo "*** Check syntax"
 
 ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
+echo ""
 echo "*** Run Ansible playbook"
 
-ansible-playbook tests/test.yml -i tests/inventory --connection=local -v
+ansible-playbook tests/test.yml -i tests/inventory --connection=local \
+    -e "${extra_vars}"
 
+echo ""
 echo "*** Idempotence test"
 
 ansible-playbook tests/test.yml -i tests/inventory --connection=local \
+    -e "${extra_vars}" \
     | grep -q 'changed=0.*failed=0' \
     && (echo 'Idempotence test: pass' && exit 0) \
     || (echo 'Idempotence test: fail' && exit 1)
 
-
+echo ""
 echo "*** Verify binaries"
 
-command -v aws
-command -v aws-shell
-command -v aws-vault
-command -v cli53
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH=$HOME/.local/bin:$PATH
+else
+    error "$HOME/.local/bin doesn't exist"
+    exit 1
+fi
+
+command -v aws > /dev/null || \
+    { error "aws not found"; exit 1; }
+aws --version
+
+command -v aws-shell > /dev/null || \
+    { error "aws-shell not found"; exit 1; }
+
+command -v aws-vault > /dev/null || \
+    { error "aws-vault not found"; exit 1; }
+aws-vault --version
+
+command -v cli53 > /dev/null || \
+    { error "cli53 not found"; exit 1; }
+cli53 --version

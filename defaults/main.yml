@@ -1,14 +1,17 @@
 ---
 # defaults file for markosamuli.aws-tools
 
+# Path to user home directory
+aws_tools_home: "{{ ansible_env.HOME }}"
+
 # Path to install tools into
-aws_tools_dir: /opt/aws-tools
-aws_tools_venv: "{{ aws_tools_dir }}/venv"
-aws_tools_python: python2.7
+aws_tools_dir: "{{ aws_tools_home }}/.local"
 
 # Target for symlinked binaries
-aws_bin_dir: /usr/local/bin
+aws_tools_bin_dir: "{{ aws_tools_dir }}/bin"
 
-# Do not check version by default
-cli53_check_version: false
-aws_vault_check_version: false
+# Remove old installation in /opt/aws-tools
+aws_tools_remove_old_install: true
+
+# Check existing asdf installs
+aws_tools_check_asdf_installs: true

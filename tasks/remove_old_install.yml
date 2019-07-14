@@ -1,0 +1,29 @@
+---
+
+- name: Find old binaries in /usr/local/bin
+  stat:
+    path: "/usr/local/bin/{{ item }}"
+  register: aws_tools_old_binaries
+  with_items:
+    - aws
+    - aws-shell
+    - aws-vault
+    - cli53
+  become: true
+
+- name: Remove symbolic links to binaries in /opt/aws-tools
+  file:
+    path: "{{ item.stat.path }}"
+    state: absent
+  with_items: "{{ aws_tools_old_binaries.results }}"
+  when:
+    - item.stat.exists
+    - item.stat.islnk
+    - "'/opt/aws-tools' in item.stat.lnk_source"
+  become: true
+
+- name: Remove /opt/aws-tools directory
+  file:
+    path: /opt/aws-tools
+    state: absent
+  become: true

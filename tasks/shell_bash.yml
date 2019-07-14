@@ -1,0 +1,24 @@
+---
+
+- name: Set path to .bashrc
+  set_fact:
+    aws_tools_bashrc_path: "{{ aws_tools_home }}/.bashrc"
+  when: aws_tools_bashrc_path is undefined
+
+- name: Check whether .bashrc file exists
+  stat:
+    path: "{{ aws_tools_bashrc_path }}"
+  register: aws_tools_bashrc_st
+
+- name: Resolve .bashrc symlink
+  set_fact:
+    aws_tools_bashrc_path: "{{ aws_tools_bashrc_st.stat.lnk_source }}"
+  when: aws_tools_bashrc_st.stat.exists and aws_tools_bashrc_st.stat.islnk
+
+- name: Add ~/.local/bin to PATH in .bashrc
+  lineinfile:
+    path: "{{ aws_tools_bashrc_path }}"
+    state: present
+    regexp: '^export PATH=(.*:)?~/.local/bin(:.*)?$'
+    line: 'export PATH=~/.local/bin:$PATH'
+  when: aws_tools_bashrc_st.stat.exists

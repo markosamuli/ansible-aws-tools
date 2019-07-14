@@ -1,17 +1,18 @@
 ---
 
-- name: OS X | Install AWS CLI tools with Homebrew
+- name: Install awscli with Homebrew
   homebrew:
     name: awscli
 
-- name: OS X | Install AWS Shell with Homebrew
+- name: Install aws-shell with Homebrew
   homebrew:
     name: aws-shell
 
-- name: OS X | Install AWS Vault with Homebrew
-  homebrew_cask:
-    name: aws-vault
-
-- name: OS X | Install cli53 with Homebrew
+- name: Install cli53 with Homebrew
   homebrew:
     name: cli53
+
+- name: Install aws-vault with Homebrew
+  homebrew_cask:
+    name: aws-vault
+  when: aws_tools_install_aws_vault | default(true)
