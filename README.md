@@ -59,6 +59,30 @@ aws_tools_check_asdf_installs: false
 
 [asdf-vm]: https://asdf-vm.com
 
+## Update release
+
+Update `aws-vault` and `cli53` release versions:
+
+```bash
+make update
+```
+
+## Coding style
+
+Install pre-commit hooks and validate coding style:
+
+```bash
+make lint
+```
+
+## Run tests
+
+Run tests in Ubuntu and Debian using Docker:
+
+```bash
+make test
+```
+
 ## License
 
 [MIT](LICENSE)
