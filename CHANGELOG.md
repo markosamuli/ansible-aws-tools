@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [2.0.0]
 
 ### Changed
 
@@ -21,5 +21,6 @@ symbolic links to `/usr/local/bin`. These will be removed automatically.
 Initial release with aws-vault v4.4.1 and cli53 v0.8.12.
 
 [Unreleased]: https://github.com/markosamuli/ansible-aws-tools/commits/develop
+[2.0.0]: https://github.com/markosamuli/ansible-aws-tools/releases/tag/v2.0.0
 [1.0.1]: https://github.com/markosamuli/ansible-aws-tools/releases/tag/v1.0.1
 [1.0.0]: https://github.com/markosamuli/ansible-aws-tools/releases/tag/v1.0.0
