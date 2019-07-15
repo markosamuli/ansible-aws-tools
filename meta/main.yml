@@ -3,7 +3,7 @@
 ---
 
 galaxy_info:
-  role_name: aws-tools
+  role_name: aws_tools
   author: Marko Samuli Kirves
   description: AWS tools installer
   license: MIT
