@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+* Install packages under `~/.aws-tools` on Linux.
+* Use virtualenv for installing `awscli` and `aws-shell` packages on Linux.
+* Added `aws-tools-update` script for updating packages in the virtualenv.
+
 ## [2.0.0]
 
 ### Changed

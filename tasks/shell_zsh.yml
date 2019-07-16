@@ -15,10 +15,10 @@
     aws_tools_zshrc_path: "{{ aws_tools_zshrc_st.stat.lnk_source }}"
   when: aws_tools_zshrc_st.stat.exists and aws_tools_zshrc_st.stat.islnk
 
-- name: Add ~/.local/bin to PATH in .zshrc
+- name: Add ~/.aws-tools/bin to PATH in .zshrc
   lineinfile:
     path: "{{ aws_tools_zshrc_path }}"
     state: present
-    regexp: '^export PATH=(.*:)?~/.local/bin(:.*)?$'
-    line: 'export PATH=~/.local/bin:$PATH'
+    regexp: 'export PATH=(\$HOME|~)/.aws-tools/bin:(.*)?$'
+    line: '[ -d "$HOME/.aws-tools/bin" ] && export PATH=$HOME/.aws-tools/bin:$PATH'
   when: aws_tools_zshrc_st.stat.exists

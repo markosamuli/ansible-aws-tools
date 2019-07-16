@@ -91,6 +91,9 @@ script:
     source ~/.bashrc
     && command -v cli53
     && cli53 --version
+  - >
+    source ~/.bashrc
+    && command -v aws-tools-update
 
 before_cache:
   - rm -f $HOME/.cache/pre-commit/pre-commit.log

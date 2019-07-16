@@ -2,12 +2,21 @@
 
 - name: Check if awscli is installed
   stat:
-    path: "{{ aws_tools_bin_dir }}/aws"
+    path: "{{ aws_tools_virtualenv }}/bin/aws"
   register: awscli_st
 
 - name: Install awscli
   pip:
     name:
       - awscli
-    extra_args: --user
+    virtualenv: "{{ aws_tools_virtualenv }}"
   when: not awscli_st.stat.exists
+
+- name: Symlink awscli executables to {{ aws_tools_bin_dir }}
+  file:
+    src: "{{ aws_tools_virtualenv }}/bin/{{ item }}"
+    dest: "{{ aws_tools_bin_dir }}/{{ item }}"
+    state: link
+  with_items:
+    - aws
+    - aws_completer

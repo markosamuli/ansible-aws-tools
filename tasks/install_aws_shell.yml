@@ -2,12 +2,18 @@
 
 - name: Check if aws-shell is installed
   stat:
-    path: "{{ aws_tools_bin_dir }}/aws-shell"
+    path: "{{ aws_tools_virtualenv }}/bin/aws-shell"
   register: aws_shell_st
 
 - name: Install aws-shell
   pip:
     name:
       - aws-shell
-    extra_args: --user
+    virtualenv: "{{ aws_tools_virtualenv }}"
   when: not aws_shell_st.stat.exists
+
+- name: Symlink aws-shell to {{ aws_tools_bin_dir }}
+  file:
+    src: "{{ aws_tools_virtualenv }}/bin/aws-shell"
+    dest: "{{ aws_tools_bin_dir }}/aws-shell"
+    state: link

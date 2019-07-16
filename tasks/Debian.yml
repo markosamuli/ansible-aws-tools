@@ -1,0 +1,13 @@
+---
+
+- name: Check if virtualenv executable exists
+  shell: command -v virtualenv  # noqa 305
+  register: virtualenv_cmd
+  failed_when: virtualenv_cmd.rc > 0 and virtualenv_cmd.rc != 127
+  changed_when: false
+
+- name: Install python-virtualenv from APT
+  apt:
+    name: python-virtualenv
+  when: virtualenv_cmd.rc > 0
+  become: true

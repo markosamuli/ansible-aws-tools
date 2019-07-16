@@ -5,13 +5,22 @@
 aws_tools_home: "{{ ansible_env.HOME }}"
 
 # Path to install tools into
-aws_tools_dir: "{{ aws_tools_home }}/.local"
+aws_tools_dir: "{{ aws_tools_home }}/.aws-tools"
+
+# Virtualenv
+aws_tools_virtualenv: "{{ aws_tools_dir }}/venv"
 
 # Target for symlinked binaries
 aws_tools_bin_dir: "{{ aws_tools_dir }}/bin"
 
 # Remove old installation in /opt/aws-tools
-aws_tools_remove_old_install: true
+aws_tools_remove_old_install: false
+
+# Remove installation in ~/.local
+aws_tools_remove_local_install: false
 
 # Check existing asdf installs
 aws_tools_check_asdf_installs: true
+
+# Configure shell
+aws_tools_init_shell: true
