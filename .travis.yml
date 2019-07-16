@@ -91,9 +91,13 @@ script:
     source ~/.bashrc
     && command -v cli53
     && cli53 --version
+
+  # aws-tools-update is installed on Linux only
   - >
-    source ~/.bashrc
-    && command -v aws-tools-update
+    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then
+      source ~/.bashrc
+      && command -v aws-tools-update
+    fi
 
 before_cache:
   - rm -f $HOME/.cache/pre-commit/pre-commit.log
@@ -104,7 +108,6 @@ stages:
 
 jobs:
   include:
-
     # Run validation stage in Linux with latest Ansible only
     - stage: validate
       name: Validate with pre-commit
@@ -114,7 +117,7 @@ jobs:
       script:
         - pre-commit run -a
 
-  # Run tests
+    # Run tests
     - stage: test
       name: "Ubuntu 16.04 (Xenial) with Ansible 2.6"
       os: linux
