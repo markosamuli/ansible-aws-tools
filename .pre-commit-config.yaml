@@ -38,6 +38,8 @@ repos:
   - repo: https://github.com/syntaqx/git-hooks
     rev: v0.0.16
     hooks:
+      - id: shellcheck
+        files: (update-release|tests/run-.*|tests/update)$
       - id: shfmt
         args: ['-l', '-i', '4', '-ci', '-w']
         files: (update-release|tests/run-.*|tests/update)$

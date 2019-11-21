@@ -18,6 +18,7 @@ addons:
     packages:
       - python-pip
       - python-dev
+      - shellcheck
     update: true
   snaps:
     - shfmt
