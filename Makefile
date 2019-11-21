@@ -7,7 +7,7 @@ all: install-git-hooks test-update lint test
 
 .PHONY: test
 test:
-	@./tests/run-tests
+	@./tests/run-tests.sh
 
 .PHONY: test-update
 test-update:
