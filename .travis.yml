@@ -22,12 +22,7 @@ addons:
   homebrew:
     packages:
       - ansible
-      - pre-commit
     update: true
-
-cache:
-  directories:
-    - $HOME/.cache/pre-commit/
 
 install:
   # Install Ansible with pip on Ubuntu
@@ -38,12 +33,6 @@ install:
       else
         pip install --user ansible${ANSIBLE_VERSION}
       fi
-    fi
-
-  # Install pre-commit with pip on Ubuntu
-  - >
-    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then
-      pip install --user pre-commit
     fi
 
   # Check Ansible version
@@ -92,9 +81,6 @@ script:
     && command -v cli53
     && cli53 --version
 
-before_cache:
-  - rm -f $HOME/.cache/pre-commit/pre-commit.log
-
 stages:
   - validate
   - test
@@ -107,6 +93,17 @@ jobs:
       os: linux
       dist: xenial
       language: minimal
+      cache:
+        directories:
+          - $HOME/.cache/pre-commit/
+      before_cache:
+        - rm -f $HOME/.cache/pre-commit/pre-commit.log
+      install:
+        # Fix ansible-lint installation issues
+        # https://github.com/ansible/ansible-lint/issues/590
+        - pip install --user virtualenv==16.3.0
+        # Install pre-commit with pip
+        - pip install --user pre-commit
       script:
         - pre-commit run -a
 
