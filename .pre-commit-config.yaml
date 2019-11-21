@@ -39,16 +39,16 @@ repos:
     rev: v0.0.16
     hooks:
       - id: shellcheck
-        files: ^(scripts/.*\.sh|tests/run-.*|tests/update)$
+        files: ^(scripts/.*\.sh|tests/run-tests\.sh|tests/test_*\.sh|tests/update\.sh)$
       - id: shfmt
         args: ['-l', '-i', '4', '-ci', '-w']
-        files: ^(scripts/.*\.sh|tests/run-.*|tests/update)$
+        files: ^(scripts/.*\.sh|tests/run-tests\.sh|tests/test_*\.sh|tests/update\.sh)$
 
   - repo: https://github.com/openstack-dev/bashate.git
     rev: '0.6.0'
     hooks:
       - id: bashate
-        files: ^(scripts/.*\.sh|tests/run-.*|tests/update)$
+        files: ^(scripts/.*\.sh|tests/run-tests\.sh|tests/test_*\.sh|tests/update\.sh)$
 
   - repo: https://github.com/igorshubovych/markdownlint-cli.git
     rev: v0.17.0

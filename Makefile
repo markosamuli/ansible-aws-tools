@@ -11,7 +11,7 @@ test:
 
 .PHONY: test-update
 test-update:
-	@./tests/update
+	@./tests/update.sh
 
 .PHONY: update
 update:
