@@ -52,7 +52,6 @@ run_playbook() {
         -e "${extra_vars}" -v
 }
 
-
 check_aws_tools_path() {
     local aws_tools_path="$HOME/.aws-tools/bin"
     if [ ! -d "${aws_tools_path}" ]; then
