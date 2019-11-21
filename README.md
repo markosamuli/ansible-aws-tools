@@ -5,8 +5,8 @@
 
 | Branch  | Status |
 |---------|--------|
-| master  | [![Build Status](https://travis-ci.org/markosamuli/ansible-aws-tools.svg?branch=master)](https://travis-ci.org/markosamuli/ansible-aws-tools)
-| develop | [![Build Status](https://travis-ci.org/markosamuli/ansible-aws-tools.svg?branch=develop)](https://travis-ci.org/markosamuli/ansible-aws-tools)
+| master  | [![Build Status](https://travis-ci.org/markosamuli/ansible-aws-tools.svg?branch=master)](https://travis-ci.org/markosamuli/ansible-aws-tools/branches)
+| develop | [![Build Status](https://travis-ci.org/markosamuli/ansible-aws-tools.svg?branch=develop)](https://travis-ci.org/markosamuli/ansible-aws-tools/branches)
 
 This Ansible role installs the following tools on Ubuntu and macOS.
 
