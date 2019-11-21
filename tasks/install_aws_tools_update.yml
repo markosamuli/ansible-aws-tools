@@ -1,0 +1,7 @@
+---
+
+- name: Install aws-tools-update script
+  template:
+    src: "aws-tools-update.j2"
+    dest: "{{ aws_tools_bin_dir }}/aws-tools-update"
+    mode: "0755"

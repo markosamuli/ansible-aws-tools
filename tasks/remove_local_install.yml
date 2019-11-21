@@ -1,0 +1,19 @@
+---
+
+- name: Check if packages are installed in ~/.local
+  stat:
+    path: "{{ aws_tools_home }}/.local/lib/python2.7/site-packages/{{ item }}"
+  register: aws_tools_local_packages
+  with_items:
+    - awscli
+    - aws-shell
+  become: false
+
+- name: Remove packages installed in ~/.local
+  pip:
+    name: "{{ item.item }}"
+    state: absent
+  with_items: "{{ aws_tools_local_packages.results }}"
+  when:
+    - item.stat.exists
+  become: false

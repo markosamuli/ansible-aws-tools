@@ -14,6 +14,10 @@ set -e
 
 # Variables to pass to ansible-playbook
 ansible_vars=(
+    '"aws_tools_remove_old_install":true'
+    '"aws_tools_remove_local_install":true'
+    '"aws_tools_check_asdf_installs":true'
+    '"aws_tools_init_shell":true'
 )
 extra_vars=$(printf ",%s" "${ansible_vars[@]}")
 extra_vars="{${extra_vars:1}}"
@@ -46,24 +50,32 @@ ansible-playbook tests/test.yml -i tests/inventory --connection=local \
 echo ""
 echo "*** Verify binaries"
 
-if [ -d "$HOME/.local/bin" ]; then
-    export PATH=$HOME/.local/bin:$PATH
+if [ -d "$HOME/.aws-tools/bin" ]; then
+    export PATH=$HOME/.aws-tools/bin:$PATH
 else
-    error "$HOME/.local/bin doesn't exist"
+    error "$HOME/.aws-tools/bin doesn't exist"
     exit 1
 fi
 
 command -v aws > /dev/null || \
     { error "aws not found"; exit 1; }
+echo -n "AWS CLI version: "
 aws --version
 
 command -v aws-shell > /dev/null || \
     { error "aws-shell not found"; exit 1; }
+echo "aws-shell installed"
 
 command -v aws-vault > /dev/null || \
     { error "aws-vault not found"; exit 1; }
+echo -n "aws-vault version: "
 aws-vault --version
 
 command -v cli53 > /dev/null || \
     { error "cli53 not found"; exit 1; }
+echo -n "cli53 version: "
 cli53 --version
+
+command -v aws-tools-update > /dev/null || \
+    { error "aws-tools-update script not found"; exit 1; }
+echo "aws-tools-update script installed"

@@ -101,7 +101,6 @@ stages:
 
 jobs:
   include:
-
     # Run validation stage in Linux with latest Ansible only
     - stage: validate
       name: Validate with pre-commit
@@ -111,7 +110,7 @@ jobs:
       script:
         - pre-commit run -a
 
-  # Run tests
+    # Run tests
     - stage: test
       name: "Ubuntu 16.04 (Xenial) with Ansible 2.6"
       os: linux

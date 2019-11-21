@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+AWS_TOOLS_VIRTUALENV="{{ aws_tools_virtualenv }}"
+. ${AWS_TOOLS_VIRTUALENV}/bin/activate
+
+set -e
+
+echo "Update awscli package in ${AWS_TOOLS_VIRTUALENV}"
+pip install -U awscli
+
+echo "Update aws-shell package in ${AWS_TOOLS_VIRTUALENV}"
+pip install -U aws-shell

@@ -36,7 +36,7 @@ function finish {
 function stop {
     local image=$1
     local container_name=${ROLE_NAME}-${image}-tests
-    echo "*** Stop containers"
+    echo "*** Stop containers with ${image}"
     docker stop ${container_name}
 }
 
@@ -46,7 +46,7 @@ function stop {
 function build {
     local image=$1
     local image_name=${ROLE_NAME}-${image}
-    echo "*** Build image"
+    echo "*** Build image for ${image}"
     docker build -t ${image_name} ./tests/${image}
 }
 
@@ -57,7 +57,7 @@ function start {
     local image=$1
     local image_name=${ROLE_NAME}-${image}
     local container_name=${ROLE_NAME}-${image}-tests
-    echo "*** Start container"
+    echo "*** Start container for ${image}"
     docker run --rm -it -d \
         -v ${MOUNT_ROOT}:${TEST_HOME}/${ROLE_NAME} \
         --name ${container_name} \
@@ -70,7 +70,7 @@ function start {
 function run_tests {
     local image=$1
     local container_name=${ROLE_NAME}-${image}-tests
-    echo "*** Run tests"
+    echo "*** Run tests with ${image}"
     docker exec -it \
         --user test \
         ${container_name} \

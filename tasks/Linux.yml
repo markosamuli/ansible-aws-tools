@@ -1,5 +1,10 @@
 ---
 
+- name: Install dependencies
+  include_tasks: Debian.yml
+  when: ansible_os_family == 'Debian' or
+        ansible_distribution == 'Pengwin'
+
 - name: Create directories
   file:
     path: "{{ item }}"
@@ -8,11 +13,18 @@
     - "{{ aws_tools_dir }}"
     - "{{ aws_tools_bin_dir }}"
 
+- name: Remove local installation
+  include_tasks: remove_local_install.yml
+  when: aws_tools_remove_local_install | bool
+
 - name: Install awscli
   include_tasks: install_awscli.yml
 
 - name: Install aws-shell
   include_tasks: install_aws_shell.yml
+
+- name: Install aws-tools-update script
+  include_tasks: install_aws_tools_update.yml
 
 - name: Install aws-vault
   include_tasks: install_aws_vault.yml
@@ -23,9 +35,11 @@
 
 - name: Configure bash
   include_tasks: shell_bash.yml
+  when: aws_tools_init_shell | bool
 
 - name: Configure zsh
   include_tasks: shell_zsh.yml
+  when: aws_tools_init_shell | bool
 
 - name: Remove old installation
   include_tasks: remove_old_install.yml
