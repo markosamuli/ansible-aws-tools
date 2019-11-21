@@ -4,25 +4,27 @@
 
 ### Changed
 
-* Install packages under `~/.aws-tools` instead of `~/.local` on Linux.
-* Use virtualenv for installing `awscli` and `aws-shell` packages on Linux.
-* Added `aws-tools-update` script for updating packages in the virtualenv.
+* Install packages under `~/.aws-tools` instead of `~/.local` on Linux
+* Use virtualenv for installing `awscli` and `aws-shell` packages on Linux
+* Added `aws-tools-update` script for updating packages in the virtualenv
+* Update cli53 to v0.8.16
+* Update aws-vault to v4.7.1
 
 ## [2.0.0]
 
 ### Changed
 
-* Update cli53 to v0.8.15.
-* Update aws-vault to v4.6.2.
-* Install packages under `~/.local` on Linux.
+* Update cli53 to v0.8.15
+* Update aws-vault to v4.6.2
+* Install packages under `~/.local` on Linux
 * The previous Linux role installed packages under `/opt/aws-tools` and created
-symbolic links to `/usr/local/bin`. These will be removed automatically.
+  symbolic links to `/usr/local/bin`. These will be removed automatically
 
 ## [1.0.1] - 2019-01-13
 
 ### Fixed
 
-* Do not check cli53 and aws-vault versions after installing.
+* Do not check cli53 and aws-vault versions after installing
 
 ## [1.0.0] - 2019-01-13
 
