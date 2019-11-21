@@ -6,6 +6,6 @@ aws_vault_binary: "aws-vault-linux-amd64"
 aws_vault_checksum: "sha256:8de95adf6e3b185210df3f06ccbe57399721d0171032782ce428c86b23b8792c"
 
 # CLI 53
-cli53_version: "0.8.15"
+cli53_version: "0.8.16"
 cli53_binary: "cli53-linux-amd64"
-cli53_checksum: "sha256:98eb9f12302fcfdba1e98f22c5c9ca2c5dbd2f414d92c6fafcd10e4fd773b8a0"
+cli53_checksum: "sha256:395d0e67a346068ef2fbff31a5adaa5dec19d5b493d9b4597b35c58b5df63c5a"
