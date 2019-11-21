@@ -19,6 +19,8 @@ addons:
       - python-pip
       - python-dev
     update: true
+  snaps:
+    - shfmt
   homebrew:
     packages:
       - ansible
